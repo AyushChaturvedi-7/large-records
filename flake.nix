@@ -35,7 +35,7 @@
           # };
           projectFlakeName = "large-records";
           # basePackages = pkgs.haskell.packages.ghc8107;
-          basePackages = pkgs.haskell.packages.ghc92;
+          basePackages = pkgs.haskell.packages.ghc98;
           imports = [
             # inputs.references.haskellFlakeProjectModules.output
             # inputs.classyplate.haskellFlakeProjectModules.output

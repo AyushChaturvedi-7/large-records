@@ -274,6 +274,8 @@ mkFunBind (reLocA -> n) = GHC.mkFunBind Generated n
 
 #if __GLASGOW_HASKELL__ < 900
 type HsModule = GHC.HsModule GhcPs
+#elif __GLASGOW_HASKELL__ >= 908
+type HsModule = GHC.HsModule GhcPs
 #else
 type HsModule = GHC.HsModule
 #endif
