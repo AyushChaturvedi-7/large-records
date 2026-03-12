@@ -539,7 +539,7 @@ withoutLoc = inheritLoc noSrcSpan
 -------------------------------------------------------------------------------}
 
 #if __GLASGOW_HASKELL__ >= 908
-type RupdFlds = Either [LHsRecUpdField GhcPs (LHsExpr GhcPs)] [LHsRecUpdProj GhcPs (LHsExpr GhcPs)]
+type RupdFlds = Either [LHsRecUpdField GhcPs (LHsExpr GhcPs)] [LHsRecUpdProj GhcPs]
 #elif __GLASGOW_HASKELL__ >= 902
 type RupdFlds = Either [LHsRecUpdField GhcPs] [LHsRecUpdProj GhcPs]
 #else

@@ -47,17 +47,31 @@
             beam-sqlite.source = inputs.beam + /beam-sqlite;
           };
           settings = {
-            #  aeson = {
-            #    check = false;
-            #  };
-            #  relude = {
-            #    haddock = false;
-            #    broken = false;
-            #  };
-            # primitive-checked = {
-            #     broken = false;
-            #     jailbreak = true;
-            # };
+            # Jailbreak packages with outdated version bounds for GHC 9.8
+            tagged = {
+              jailbreak = true;
+            };
+            th-abstraction = {
+              jailbreak = true;
+            };
+            splitmix = {
+              jailbreak = true;
+            };
+            QuickCheck = {
+              jailbreak = true;
+            };
+            generic-deriving = {
+              jailbreak = true;
+            };
+            quickcheck-instances = {
+              jailbreak = true;
+            };
+            random = {
+              jailbreak = true;
+            };
+            tasty = {
+              jailbreak = true;
+            };
           };
 
           devShell = {
