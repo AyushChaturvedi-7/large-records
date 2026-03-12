@@ -22,7 +22,12 @@ import GHC.Utils.Outputable
 #if MIN_VERSION_ghc(9,0,0)
 
 import GHC.Core.TyCo.FVs (tyCoVarsOfType)
+#if MIN_VERSION_ghc(9,6,0)
+import GHC.Core.TyCo.Subst (Subst)
+type TCvSubst = Subst
+#else
 import GHC.Core.TyCo.Subst (TCvSubst)
+#endif
 import GHC.Types.Var.Set (elemVarSet)
 
 import qualified GHC.Core.TyCo.Subst as Subst
