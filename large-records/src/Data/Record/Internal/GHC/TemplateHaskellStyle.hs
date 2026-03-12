@@ -241,7 +241,11 @@ recConE = \recName -> mkRec recName . map (uncurry mkFld)
 recUpdE :: LHsExpr GhcPs -> [(LRdrName, LHsExpr GhcPs)] -> LHsExpr GhcPs
 recUpdE = \recExpr -> updRec recExpr . map (uncurry updFld)
   where
+#if __GLASGOW_HASKELL__ >= 908
+    updRec :: LHsExpr GhcPs -> [LHsRecUpdField GhcPs (LHsExpr GhcPs)] -> LHsExpr GhcPs
+#else
     updRec :: LHsExpr GhcPs -> [LHsRecUpdField GhcPs] -> LHsExpr GhcPs
+#endif
     updRec expr fields = inheritLoc expr $
         RecordUpd defExt expr
 #if __GLASGOW_HASKELL__ >= 902
@@ -249,7 +253,11 @@ recUpdE = \recExpr -> updRec recExpr . map (uncurry updFld)
 #endif
             fields
 
+#if __GLASGOW_HASKELL__ >= 908
+    updFld :: LRdrName -> LHsExpr GhcPs -> LHsRecUpdField GhcPs (LHsExpr GhcPs)
+#else
     updFld :: LRdrName -> LHsExpr GhcPs -> LHsRecUpdField GhcPs
+#endif
     updFld name val = inheritLoc name $
 #if __GLASGOW_HASKELL__ >= 904
         HsFieldBind

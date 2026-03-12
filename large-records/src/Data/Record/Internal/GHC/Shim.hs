@@ -341,7 +341,10 @@ instance HasDefaultExt NoExtField where
   defExt = noExtField
 #endif
 
-#if __GLASGOW_HASKELL__ >= 900
+#if __GLASGOW_HASKELL__ >= 908
+instance HasDefaultExt (LayoutInfo GhcPs) where
+  defExt = NoLayoutInfo
+#elif __GLASGOW_HASKELL__ >= 900
 instance HasDefaultExt LayoutInfo where
   defExt = NoLayoutInfo
 #endif
@@ -535,7 +538,9 @@ withoutLoc = inheritLoc noSrcSpan
   Records
 -------------------------------------------------------------------------------}
 
-#if __GLASGOW_HASKELL__ >= 902
+#if __GLASGOW_HASKELL__ >= 908
+type RupdFlds = Either [LHsRecUpdField GhcPs (LHsExpr GhcPs)] [LHsRecUpdProj GhcPs (LHsExpr GhcPs)]
+#elif __GLASGOW_HASKELL__ >= 902
 type RupdFlds = Either [LHsRecUpdField GhcPs] [LHsRecUpdProj GhcPs]
 #else
 type RupdFlds = [LHsRecUpdField GhcPs]
