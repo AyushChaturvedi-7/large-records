@@ -227,7 +227,11 @@ lookupOrigIO env modl occ = lookupNameCache (hsc_NC env) modl occ
 importDecl :: ModuleName -> Bool -> LImportDecl GhcPs
 importDecl name qualified = noLocA $ ImportDecl {
       ideclExt       = defExt
+#if __GLASGOW_HASKELL__ >= 908
+    , ideclSourceText = NoSourceText
+#else
     , ideclSourceSrc = NoSourceText
+#endif
     , ideclName      = noLocA name
 #if __GLASGOW_HASKELL__ >= 904
     , ideclPkgQual   = NoRawPkgQual
@@ -237,7 +241,11 @@ importDecl name qualified = noLocA $ ImportDecl {
     , ideclSafe      = False
     , ideclImplicit  = False
     , ideclAs        = Nothing
+#if __GLASGOW_HASKELL__ >= 908
+    , ideclImportList = Nothing
+#else
     , ideclHiding    = Nothing
+#endif
 #if __GLASGOW_HASKELL__ < 810
     , ideclQualified = qualified
 #else
